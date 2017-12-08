@@ -3,15 +3,17 @@ package com.example.xyzreader.ui;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
+import android.support.v7.graphics.Palette;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
-public class ImageLoaderHelper {
+class ImageLoaderHelper {
     private static ImageLoaderHelper sInstance;
 
-    public static ImageLoaderHelper getInstance(Context context) {
+    static ImageLoaderHelper getInstance(Context context) {
         if (sInstance == null) {
             sInstance = new ImageLoaderHelper(context.getApplicationContext());
         }
@@ -38,7 +40,37 @@ public class ImageLoaderHelper {
         mImageLoader = new ImageLoader(queue, imageCache);
     }
 
-    public ImageLoader getImageLoader() {
+    ImageLoader getImageLoader() {
         return mImageLoader;
+    }
+
+    public void load (String url, final ImagePaletteLoaderCallback callback) {
+        getImageLoader().get(url, new ImageLoader.ImageListener() {
+            @Override
+            public void onResponse(ImageLoader.ImageContainer imageContainer, boolean b) {
+                final Bitmap bitmap = imageContainer.getBitmap();
+                if (bitmap == null) {
+                    return;
+                }
+                new Palette.Builder(bitmap).maximumColorCount(12).generate(new Palette.PaletteAsyncListener() {
+                    @Override
+                    public void onGenerated(Palette palette) {
+                        callback.onImagePaletteLoaded(bitmap, palette);
+                    }
+                });
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                callback.onImagePaletteError(volleyError);
+            }
+        });
+    }
+
+
+
+    interface ImagePaletteLoaderCallback {
+        void onImagePaletteLoaded(Bitmap bitmap, Palette palette);
+        void onImagePaletteError(VolleyError error);
     }
 }
