@@ -11,6 +11,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 class ImageLoaderHelper {
+    private static final int MAX_COLORS = 16;
     private static ImageLoaderHelper sInstance;
 
     static ImageLoaderHelper getInstance(Context context) {
@@ -44,7 +45,7 @@ class ImageLoaderHelper {
         return mImageLoader;
     }
 
-    public void load (String url, final ImagePaletteLoaderCallback callback) {
+    void load(String url, final ImagePaletteLoaderCallback callback) {
         getImageLoader().get(url, new ImageLoader.ImageListener() {
             @Override
             public void onResponse(ImageLoader.ImageContainer imageContainer, boolean b) {
@@ -52,7 +53,7 @@ class ImageLoaderHelper {
                 if (bitmap == null) {
                     return;
                 }
-                new Palette.Builder(bitmap).maximumColorCount(12).generate(new Palette.PaletteAsyncListener() {
+                new Palette.Builder(bitmap).maximumColorCount(MAX_COLORS).generate(new Palette.PaletteAsyncListener() {
                     @Override
                     public void onGenerated(Palette palette) {
                         callback.onImagePaletteLoaded(bitmap, palette);
