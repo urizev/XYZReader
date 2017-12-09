@@ -42,12 +42,13 @@
                 android:minHeight="?actionBarSize"
                 android:background="@color/theme_detail_meta"
                 android:layout_gravity="bottom"
+                android:paddingTop="@dimen/detail_metabar_vert_padding"
                 android:elevation="0dp"
-                android:contentInsetStart="0dp"
-                android:contentInsetLeft="0dp"
+                android:contentInsetStart="@dimen/detail_inner_horiz_margin"
+                android:contentInsetLeft="@dimen/detail_inner_horiz_margin"
                 android:contentInsetStartWithNavigation="0dp"
-                app:contentInsetStart="0dp"
-                app:contentInsetLeft="0dp"
+                app:contentInsetStart="@dimen/detail_inner_horiz_margin"
+                app:contentInsetLeft="@dimen/detail_inner_horiz_margin"
                 app:contentInsetStartWithNavigation="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_collapseMode="pin">
@@ -56,9 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingLeft="@dimen/detail_inner_horiz_margin"
                     android:paddingRight="@dimen/detail_inner_horiz_margin"
-                    android:paddingTop="@dimen/detail_metabar_vert_padding"
                     android:paddingBottom="@dimen/detail_metabar_vert_padding">
 
                     <TextView
