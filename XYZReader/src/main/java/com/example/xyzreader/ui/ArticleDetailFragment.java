@@ -118,6 +118,7 @@ public class ArticleDetailFragment extends Fragment implements
 
         mToolbar = mRootView.findViewById(R.id.toolbar);
         getActivityCast().setSupportActionBar(mToolbar);
+        getActivityCast().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mCollapsingBar = mRootView.findViewById(R.id.detail_collapsing);
         mMetaBar = mRootView.findViewById(R.id.meta_bar);
 
@@ -184,7 +185,7 @@ public class ArticleDetailFragment extends Fragment implements
                     mLightMutedColor = palette.getDarkMutedColor(mLightMutedColor);
                     mLightVibrantColor = palette.getLightVibrantColor(mLightVibrantColor);
                     mPhotoView.setImageBitmap(bitmap);
-                    mMetaBar.setBackgroundColor(mDarkMutedColor);
+                    mToolbar.setBackgroundColor(mDarkMutedColor);
                     mCollapsingBar.setContentScrimColor(mLightMutedColor);
 
                     updateStatusBarColor();

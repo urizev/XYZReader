@@ -23,6 +23,7 @@
     <color name="theme_accent">#FF9800</color>
     <color name="ltgray">#ffe0e0e0</color>
     <color name="theme_detail_meta">#333</color>
+    <color name="theme_detail_background">#efefef</color>
     <color name="theme_article_background">#fff</color>
     <color name="page_margin_color">#2000</color>
 </resources>

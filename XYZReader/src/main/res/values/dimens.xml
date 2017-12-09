@@ -11,5 +11,6 @@
     <dimen name="cell_article_vpadding">16dp</dimen>
     <dimen name="cell_article_title_vpadding">4dp</dimen>
     <dimen name="page_margin">1dp</dimen>
+    <dimen name="article_padding">16dp</dimen>
 
 </resources>

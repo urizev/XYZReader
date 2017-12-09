@@ -2,13 +2,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/draw_insets_frame_layout"
-    android:background="@color/theme_article_background"
+    android:background="@color/theme_detail_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
+        app:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/detail_photo_height">
@@ -36,34 +36,25 @@
                 android:background="@drawable/photo_background_protection" />
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/main.toolbar"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="100dp"
+                android:minHeight="?actionBarSize"
+                android:background="@color/theme_detail_meta"
+                android:layout_gravity="bottom"
+                android:elevation="0dp"
+                android:contentInsetStart="0dp"
+                android:contentInsetLeft="0dp"
+                android:contentInsetStartWithNavigation="0dp"
+                app:contentInsetStart="0dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStartWithNavigation="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="pin" />
-
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <com.example.xyzreader.ui.MaxWidthLinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:maxWidth="@dimen/detail_card_max_width">
-
+                app:layout_collapseMode="pin">
                 <LinearLayout
                     android:id="@+id/meta_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/theme_detail_meta"
-                    android:layout_gravity="bottom"
                     android:orientation="vertical"
                     android:paddingLeft="@dimen/detail_inner_horiz_margin"
                     android:paddingRight="@dimen/detail_inner_horiz_margin"
@@ -73,6 +64,7 @@
                     <TextView
                         android:id="@+id/article_title"
                         style="?android:attr/textAppearanceLarge"
+                        tools:text="Test Tiele"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
@@ -84,22 +76,39 @@
 
                     <TextView
                         android:id="@+id/article_byline"
+                        tools:text="Test byline"
                         style="?android:attr/textAppearanceSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#8fff" />
                 </LinearLayout>
+            </android.support.v7.widget.Toolbar>
 
-                <TextView
-                    android:id="@+id/article_body"
-                    tools:text="Este es un ejemplo de texto"
-                    style="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/detail_inner_horiz_margin"
-                    android:textColorLink="@color/theme_accent"
-                    android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier" />
-        </com.example.xyzreader.ui.MaxWidthLinearLayout>
+
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:id="@+id/article_body"
+            tools:text="Este es un ejemplo de texto"
+            android:background="@color/theme_article_background"
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/article_padding"
+            android:layout_marginLeft="@dimen/detail_inner_horiz_margin"
+            android:layout_marginStart="@dimen/detail_inner_horiz_margin"
+            android:layout_marginRight="@dimen/detail_inner_horiz_margin"
+            android:layout_marginEnd="@dimen/detail_inner_horiz_margin"
+            android:textColorLink="@color/theme_accent"
+            android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier" />
     </android.support.v4.widget.NestedScrollView>
 
 
