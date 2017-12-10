@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -64,6 +65,12 @@ public class ArticleListActivity extends AppCompatActivity implements
         }
 
         mSwipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getLoaderManager().restartLoader(0, null, ArticleListActivity.this);
+            }
+        });
 
         mRecyclerView = findViewById(R.id.recycler_view);
         getLoaderManager().initLoader(0, null, this);
@@ -121,6 +128,7 @@ public class ArticleListActivity extends AppCompatActivity implements
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(sglm);
         mSwipeRefreshLayout.setRefreshing(false);
+        Snackbar.make(mRecyclerView, R.string.loading_done, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

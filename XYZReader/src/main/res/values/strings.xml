@@ -9,5 +9,6 @@
 
     <string name="up">Up</string>
     <string name="article_photo">Article photo</string>
+    <string name="loading_done">All articles loaded</string>
 
 </resources>
